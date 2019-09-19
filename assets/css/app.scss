@@ -1,0 +1,9 @@
+@import "~font-awesome";
+@import "helpers/variables";
+@import "~bootstrap";
+@import "layout/vertical-navbar";
+@import "layout/content";
+
+.text-primary {
+  color: $primary-color;
+}
