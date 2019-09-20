@@ -1,11 +1,7 @@
 .container-fluid {
-  width: calc(100vw - 300px);
+  width: calc(100vw - 320px);
   min-height: 100vh;
   background-color: #ecf0f1;
   display: inline-block;
   float: right;
-}
-
-.container-fluid::after {
-  clear: both;
 }

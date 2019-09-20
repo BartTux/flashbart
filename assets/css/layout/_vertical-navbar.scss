@@ -1,13 +1,24 @@
 .navbar-fixed-left {
-  width: 300px;
-  height: 100vh;
+  display: block;
+  width: 320px;
+  height: calc(100vh - 150px);
   position: fixed;
   left: 0;
+  top: 0;
   background-color: #ffffff;
   border-right: 1px solid #e1e4e4;
-  display: inline-block
 }
 
-.brand-section {
+.brand-section, .nav-section, .button-section {
+  width: 260px;
+  margin: 0 auto;
   border-bottom: 1px solid #e1e4e4;
+}
+
+.button-section {
+  border-bottom: none;
+}
+
+.nav-icon {
+  font-size: 19px;
 }

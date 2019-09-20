@@ -13,44 +13,79 @@
 
         <!-- VERTICAL NAVIGATION -->
 
-        <nav class="navbar navbar-inverse navbar-fixed-left navbar-light p-0">
+        <nav class="navbar-fixed-left navbar navbar-inverse navbar-light p-0">
+
             <div class="brand-section py-2 text-center">
                 <a class="navbar-brand pl-3 text-primary" href="#">
                     <span class="fa fa-american-sign-language-interpreting"></span>
                     <span class="font-weight-light">flash</span><span class="font-weight-bold">bart</span>
                 </a>
             </div>
-            <ul class="nav navbar-nav font-weight-bold" aria-orientation="vertical">
-                <li class="pl-3">
-                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
-                        <span class="fa fa-home" aria-hidden="true"></span> Home
-                    </a>
-                </li>
-                <li class="pl-3">
-                    <a class="nav-link text-primary" href="#" role="tab" aria-controls="v-pills-profile" aria-selected="false">
-                        <span class="fa fa-window-restore" aria-hidden="true"></span>
-                        Flashcards
-                    </a>
-                </li>
-                <li class="pl-3">
-                    <a class="nav-link text-dark" id="v-pills-messages-tab" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-messages" aria-selected="false">
-                        <span class="fa fa-brain" aria-hidden="true"></span> Learning
-                    </a>
-                </li>
-                <li class="pl-3">
-                    <a class="nav-link text-dark" id="v-pills-settings-tab" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-settings" aria-selected="false">
-                        <span class="fa fa-list-alt" aria-hidden="true"></span> Test
-                    </a>
-                </li>
-                <li class="pl-3">
-                    <a class="nav-link text-dark" id="v-pills-settings-tab" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-settings" aria-selected="false">
-                        <span class="fa fa-info-circle" aria-hidden="true"></span> How to use?
-                    </a>
-                </li>
-            </ul>
+
+            <div class="account-section">
+
+            </div>
+
+            <div class="nav-section mt-4 pb-4">
+                <ul class="nav navbar-nav font-weight-bold" aria-orientation="vertical">
+                    <li>
+                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                            <span class="nav-icon fa fa-home fa-fw mr-4 text-muted" aria-hidden="true"></span>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link text-primary" href="#" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+                            <span class="nav-icon fa fa-window-restore fa-fw mr-4" aria-hidden="true"></span>
+                            Flashcards
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link text-dark" id="v-pills-messages-tab" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-messages" aria-selected="false">
+                            <span class="nav-icon fa fa-brain fa-fw mr-4 text-muted" aria-hidden="true"></span>
+                            Learning
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link text-dark" id="v-pills-settings-tab" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+                            <span class="nav-icon fa fa-list-alt fa-fw mr-4 text-muted" aria-hidden="true"></span>
+                            Test
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-link text-dark" id="v-pills-settings-tab" data-toggle="pill" href="#" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+                            <span class="nav-icon fa fa-info-circle fa-fw mr-4 text-muted" aria-hidden="true"></span>
+                            How to use?
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="button-section mt-5 pb-5">
+                <button class="btn btn-primary btn-block rounded-0" type="button">Add new card</button>
+                <button class="btn btn-primary btn-block rounded-0 mt-4" type="button">Add new section</button>
+            </div>
+
         </nav>
 
         <!-- END VERTICAL NAVIGATION -->
+
+        <!-- FOOTER -->
+
+        <footer class="footer text-center">
+
+            <p>
+                &copy; Created by
+                <a class="font-weight-bold text-dark" href="https://github.com/BartTux">BartTux</a>
+            </p>
+            <a class="text-dark" href="https://github.com/BartTux">
+                <span class="footer-icon fa fa-github" aria-hidden="true"></span>
+            </a>
+
+        </footer>
+
+        <!-- END FOOTER -->
+
 
         {% block body %}{% endblock %}
 
