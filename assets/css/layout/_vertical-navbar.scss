@@ -1,24 +1,49 @@
 .navbar-fixed-left {
   display: block;
-  width: 320px;
-  height: calc(100vh - 150px);
+  width: 290px;
+  height: calc(100vh - 120px);
   position: fixed;
   left: 0;
   top: 0;
   background-color: #ffffff;
   border-right: 1px solid #e1e4e4;
+  font-size: 15px;
 }
 
-.brand-section, .nav-section, .button-section {
-  width: 260px;
+.brand-section, .nav-section, .button-section, .account-section {
+  width: 230px;
   margin: 0 auto;
   border-bottom: 1px solid #e1e4e4;
+}
+
+.account-section img {
+  width: 40px;
+  height: 40px;
 }
 
 .button-section {
   border-bottom: none;
 }
 
+.button-section button, .dropdown-menu {
+  font-size: 15px;
+}
+
 .nav-icon {
-  font-size: 19px;
+  font-size: 17px;
+}
+
+.dropdown-icon, .account-dropdown-icon {
+  float: right;
+  font-size: 14px;
+  color: #000000;
+}
+
+.account-dropdown-icon {
+  margin-top: 12px;
+}
+
+.account-dropdown {
+  width: 230px;
+  border-radius: 0;
 }
