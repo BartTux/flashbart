@@ -3,6 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="author" content="BartTux">
+
         <title>{% block title %}Welcome!{% endblock %}</title>
 
         {% block stylesheets %}
@@ -11,16 +13,28 @@
     </head>
     <body>
 
-        <!-- VERTICAL NAVIGATION -->
+        <!-- HORIZONTAL NAVIGATION -->
 
-        <nav class="navbar-fixed-left navbar navbar-inverse navbar-light p-0">
+        <nav class="navbar navbar-dark bg-primary fixed-top flex-md-nowrap p-0">
 
-            <div class="brand-section py-2 text-center">
-                <a class="navbar-brand pl-3 text-primary" href="#">
+            <div class="brand-section col-sm-3 col-md-2 bg-white text-center">
+                <a class="navbar-brand text-primary" href="#">
                     <span class="fa fa-american-sign-language-interpreting"></span>
                     <span class="font-weight-light">flash</span><span class="font-weight-bold">bart</span>
                 </a>
             </div>
+
+
+
+            <input class="form-control form-control-white" type="search" placeholder="Search for..." aria-label="Search">
+
+        </nav>
+
+        <!-- END HORIZONTAL NAVIGATION -->
+
+        <!-- VERTICAL NAVIGATION -->
+
+        <nav class="navbar-fixed-left navbar navbar-inverse navbar-light p-0">
 
             <div class="nav-item dropdown account-section mt-4 pb-4">
                 <a class="" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -45,29 +59,32 @@
 
             <div class="nav-section mt-4 pb-4">
                 <ul class="nav navbar-nav font-weight-bold" aria-orientation="vertical">
-                    <li>
+                    <li class="nav-item">
                         <a class="nav-link text-dark" href="#" aria-selected="false">
                             <span class="nav-icon fa fa-home fa-fw mr-4 text-muted" aria-hidden="true"></span>
                             Home
                         </a>
                     </li>
-                    <li class="nav-item dropdown active show">
+
+                    <li class="nav-item dropdown show">
                         <a class="nav-link text-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="nav-icon fa fa-window-restore fa-fw mr-4" aria-hidden="true"></span>
                             Flashcards
                             <span class="dropdown-icon fa fa-caret-right fa-fw pt-1" aria-hidden="true"></span>
                         </a>
                         <ul class="dropdown-menu border-0 mb-2 pt-0 show" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item ml-4" href="#">All Cards</a></li>
+                            <li><a class="dropdown-item font-weight-bold ml-4" href="#">All Cards</a></li>
                             <li><a class="dropdown-item ml-4" href="#">User section 1</a></li>
                         </ul>
                     </li>
-                    <li>
+
+                    <li class="nav-item">
                         <a class="nav-link text-dark" href="#" aria-selected="false">
                             <span class="nav-icon fa fa-book fa-fw mr-4 text-muted" aria-hidden="true"></span>
                             Learning
                         </a>
                     </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link text-dark" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="nav-icon fa fa-list-alt fa-fw mr-4 text-muted" aria-hidden="true"></span>
@@ -79,7 +96,8 @@
                             <li><a class="dropdown-item ml-4" href="#">Enter the word</a></li>
                         </ul>
                     </li>
-                    <li>
+                    
+                    <li class="nav-item">
                         <a class="nav-link text-dark" href="#" aria-selected="false">
                             <span class="nav-icon fa fa-info-circle fa-fw mr-4 text-muted" aria-hidden="true"></span>
                             How to use?
