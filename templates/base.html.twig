@@ -17,128 +17,155 @@
 
         <nav class="navbar navbar-dark bg-primary fixed-top flex-md-nowrap p-0">
 
-            <div class="brand-section col-sm-3 col-md-2 bg-white text-center">
+            <div class="brand-section col-sm-3 col-md-4 col-lg-3 col-xl-2 bg-white text-center">
                 <a class="navbar-brand text-primary" href="#">
                     <span class="fa fa-american-sign-language-interpreting"></span>
                     <span class="font-weight-light">flash</span><span class="font-weight-bold">bart</span>
                 </a>
             </div>
 
-
-
-            <input class="form-control form-control-white" type="search" placeholder="Search for..." aria-label="Search">
+            <div class="search-section">
+                <input class="form-control form-control-white float-left" type="search" placeholder="Search for..." aria-label="Search">
+                <button class="btn btn-light" type="submit">
+                    <span class="nav-icon fa fa-search text-muted" aria-hidden="true"></span>
+                </button>
+            </div>
 
         </nav>
 
         <!-- END HORIZONTAL NAVIGATION -->
 
-        <!-- VERTICAL NAVIGATION -->
 
-        <nav class="navbar-fixed-left navbar navbar-inverse navbar-light p-0">
+        <div class="container-fluid">
+            <div class="row">
 
-            <div class="nav-item dropdown account-section mt-4 pb-4">
-                <a class="" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false">
-                    <img class="rounded-circle float-left mr-3" src="../img/flaga.png" alt="Profile image">
-                    <div class="account-items">
-                        <span class="account-dropdown-icon fa fa-caret-right fa-fw pt-1" aria-hidden="true"></span>
-                        <p class="text-dark font-weight-bold mb-0">Michael Doe</p>
-                        <small class="text-muted">
-                            <span class="nav-icon fa fa-flag fa-fw text-muted" aria-hidden="true"></span>
-                            Polish, PL
-                        </small>
+                <!-- VERTICAL NAVIGATION -->
+
+                <nav class="col-md-4 col-lg-3 col-xl-2 d-none d-md-block bg-white px-0 sidebar">
+                    <div class="sidebar-sticky">
+
+                        <div class="nav-item dropdown mt-4 pb-4 navbar-sections">
+                            <a class="d-flex justify-content-between align-items-center" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                                <div class="account-items">
+                                    <img class="float-left" src="../img/flaga.png" alt="Profile image">
+                                    <p class="text-dark font-weight-bold d-block float-left">Michael Doe</p>
+                                    <small class="text-muted d-block">
+                                        <span class="nav-icon fa fa-flag fa-fw text-muted" aria-hidden="true"></span>
+                                        Polish, PL
+                                    </small>
+                                </div>
+                                <span class="account-dropdown-icon fa fa-caret-right fa-fw text-dark" aria-hidden="true"></span>
+                            </a>
+                            <ul class="dropdown-menu pt-0 account-dropdown" aria-labelledby="navbarDropdown3">
+                                <li>
+                                    <a class="dropdown-item" href="#">Profile</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Settings</a>
+                                </li>
+                                <div class="dropdown-divider"></div>
+                                <li>
+                                    <a class="dropdown-item" href="#">Sign out</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-4 pb-4 navbar-sections navigation">
+                            <ul class="nav navbar-nav flex-column font-weight-bold" aria-orientation="vertical">
+                                <li class="nav-item mb-1">
+                                    <a class="nav-link" href="#" aria-selected="false">
+                                        <span class="nav-icon fa fa-home fa-fw mr-4 text-muted" aria-hidden="true"></span>
+                                        Home
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown active mb-1">
+                                    <a class="nav-link d-flex justify-content-between align-items-center text-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <div>
+                                            <span class="nav-icon fa fa-window-restore fa-fw mr-4" aria-hidden="true"></span>
+                                            Flashcards
+                                        </div>
+                                        <span class="dropdown-icon fa fa-caret-right fa-fw text-dark" aria-hidden="true"></span>
+                                    </a>
+                                    <ul class="dropdown-menu border-0 mb-2" aria-labelledby="navbarDropdown">
+                                        <li>
+                                            <a class="dropdown-item ml-4 active" href="#">All Cards</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item ml-4" href="#">User section 1</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item mb-1">
+                                    <a class="nav-link" href="#" aria-selected="false">
+                                        <span class="nav-icon fa fa-book fa-fw mr-4 text-muted" aria-hidden="true"></span>
+                                        Learning
+                                    </a>
+                                </li>
+                                <li class="nav-item dropdown mb-1">
+                                    <a class="nav-link d-flex justify-content-between align-items-center" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <div>
+                                            <span class="nav-icon fa fa-list-alt fa-fw mr-4 text-muted" aria-hidden="true"></span>
+                                            Test
+                                        </div>
+                                        <span class="dropdown-icon fa fa-caret-right fa-fw" aria-hidden="true"></span>
+                                    </a>
+                                    <ul class="dropdown-menu border-0 mb-2 pt-0" aria-labelledby="navbarDropdown2">
+                                        <li><a class="dropdown-item ml-4" href="#">Multiple choice</a></li>
+                                        <li><a class="dropdown-item ml-4" href="#">Enter the word</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item mb-1">
+                                    <a class="nav-link" href="#" aria-selected="false">
+                                        <span class="nav-icon fa fa-info-circle fa-fw mr-4 text-muted" aria-hidden="true"></span>
+                                        How to use?
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-5 navbar-sections">
+                            <button class="btn btn-primary btn-block rounded-0" type="button">
+                                <span class="fa fa-plus-circle fa-fw mr-1" aria-hidden="true"></span>
+                                New card
+                            </button>
+                            <button class="btn btn-primary btn-block rounded-0 mt-4" type="button">
+                                <span class="fa fa-plus-square fa-fw mr-1" aria-hidden="true"></span>
+                                New section
+                            </button>
+                        </div>
                     </div>
-                </a>
-                <ul class="dropdown-menu account-dropdown pt-0" aria-labelledby="navbarDropdown3">
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
-                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                    <div class="dropdown-divider"></div>
-                    <li><a class="dropdown-item" href="#">Sign out</a></li>
-                </ul>
+                </nav>
+
+                <!-- END VERTICAL NAVIGATION -->
+
+
+                <!-- CONTENT -->
+
+                {% block body %}{% endblock %}
+
+                <!-- END CONTENT -->
+
             </div>
 
-            <div class="nav-section mt-4 pb-4">
-                <ul class="nav navbar-nav font-weight-bold" aria-orientation="vertical">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="#" aria-selected="false">
-                            <span class="nav-icon fa fa-home fa-fw mr-4 text-muted" aria-hidden="true"></span>
-                            Home
-                        </a>
-                    </li>
+            <div class="row">
+                <!-- FOOTER -->
 
-                    <li class="nav-item dropdown show">
-                        <a class="nav-link text-primary" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="nav-icon fa fa-window-restore fa-fw mr-4" aria-hidden="true"></span>
-                            Flashcards
-                            <span class="dropdown-icon fa fa-caret-right fa-fw pt-1" aria-hidden="true"></span>
-                        </a>
-                        <ul class="dropdown-menu border-0 mb-2 pt-0 show" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item font-weight-bold ml-4" href="#">All Cards</a></li>
-                            <li><a class="dropdown-item ml-4" href="#">User section 1</a></li>
-                        </ul>
-                    </li>
+                <footer class="col-md-4 col-lg-3 col-xl-2 d-none d-md-block text-center bg-white footer">
 
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="#" aria-selected="false">
-                            <span class="nav-icon fa fa-book fa-fw mr-4 text-muted" aria-hidden="true"></span>
-                            Learning
-                        </a>
-                    </li>
+                    <p class="mt-4">
+                        &copy; Created by
+                        <a class="font-weight-bold text-dark" href="https://github.com/BartTux">BartTux</a>
+                    </p>
+                    <a class="text-dark" href="https://github.com/BartTux">
+                        <span class="footer-icon fa fa-github" aria-hidden="true"></span>
+                    </a>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link text-dark" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="nav-icon fa fa-list-alt fa-fw mr-4 text-muted" aria-hidden="true"></span>
-                            Test
-                            <span class="dropdown-icon fa fa-caret-right fa-fw pt-1" aria-hidden="true"></span>
-                        </a>
-                        <ul class="dropdown-menu border-0 mb-2 pt-0" aria-labelledby="navbarDropdown2">
-                            <li><a class="dropdown-item ml-4" href="#">Multiple choice</a></li>
-                            <li><a class="dropdown-item ml-4" href="#">Enter the word</a></li>
-                        </ul>
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" href="#" aria-selected="false">
-                            <span class="nav-icon fa fa-info-circle fa-fw mr-4 text-muted" aria-hidden="true"></span>
-                            How to use?
-                        </a>
-                    </li>
-                </ul>
+                </footer>
+
+                <!-- END FOOTER -->
             </div>
-
-            <div class="button-section mt-5">
-                <button class="btn btn-primary btn-block rounded-0" type="button">
-                    <span class="fa fa-plus-circle fa-fw mr-2" aria-hidden="true"></span>
-                    Add new flashcard
-                </button>
-                <button class="btn btn-primary btn-block rounded-0 mt-4" type="button">
-                    <span class="fa fa-plus-square fa-fw mr-2" aria-hidden="true"></span>
-                    Add new sections
-                </button>
-            </div>
-
-        </nav>
-
-        <!-- END VERTICAL NAVIGATION -->
-
-        <!-- FOOTER -->
-
-        <footer class="footer text-center">
-
-            <p>
-                &copy; Created by
-                <a class="font-weight-bold text-dark" href="https://github.com/BartTux">BartTux</a>
-            </p>
-            <a class="text-dark" href="https://github.com/BartTux">
-                <span class="footer-icon fa fa-github" aria-hidden="true"></span>
-            </a>
-
-        </footer>
-
-        <!-- END FOOTER -->
-
-
-        {% block body %}{% endblock %}
+        </div>
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}

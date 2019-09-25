@@ -1,12 +1,24 @@
 .brand-section {
-  padding: 8px 0;
+  padding: 6px 0;
   margin: 0;
+  border-bottom: 1px solid #e1e4e4;
+  border-right: 1px solid #e1e4e4;
 }
 
-.navbar .form-control {
-  width: 340px;
+.search-section .form-control {
+  width: 290px;
   font-size: 13px;
-  height: 30px;
-  border-radius: 15px;
+  height: 27px;
+  border-radius: 15px 0 0 15px;
+  border: none;
+}
+
+.search-section button {
+  height: 27px;
+  border-radius: 0 15px 15px 0;
   margin-right: 48px;
+  background-color: white;
+  border-left: none;
+  padding-top: 0;
+  padding-bottom: 2px;
 }

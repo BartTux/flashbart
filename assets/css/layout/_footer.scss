@@ -1,15 +1,12 @@
 .footer {
   position: fixed;
-  left: 0;
   bottom: 0;
-  width: 290px;
+  left: 0;
   height: 120px;
-  background-color: #ffffff;
   border-right: 1px solid #e1e4e4;
-  border-top: 1px solid #e1e4e4;
-  padding-top: 25px;
+  z-index: 2;
 }
 
-.footer-icon {
+.footer span {
   font-size: 30px;
 }

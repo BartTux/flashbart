@@ -1,49 +1,97 @@
-.navbar-fixed-left {
-  display: block;
-  width: 290px;
-  height: calc(100vh - 120px);
+//.button-section button, .dropdown-menu {
+//  font-size: 15px;
+//}
+//
+//.nav-icon {
+//  font-size: 17px;
+//}
+//
+//.dropdown-icon, .account-dropdown-icon {
+//  float: right;
+//  font-size: 14px;
+//  color: #000000;
+//}
+//
+//.account-dropdown-icon {
+//  margin-top: 12px;
+//}
+//
+//.account-dropdown {
+//  width: 230px;
+//  border-radius: 0;
+//}
+
+.sidebar {
   position: fixed;
-  left: 0;
   top: 0;
-  background-color: #ffffff;
+  left: 0;
+  z-index: 100;
+  padding-top: 48px;
   border-right: 1px solid #e1e4e4;
-  font-size: 15px;
+  border-bottom: 1px solid #e1e4e4;
+  padding-bottom: 30px;
 }
 
-.brand-section, .nav-section, .button-section, .account-section {
-  width: 230px;
-  margin: 0 auto;
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 198px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+  .sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+  }
+}
+
+.navbar-sections {
+  padding: 0 30px;
   border-bottom: 1px solid #e1e4e4;
 }
 
-.account-section img {
-  width: 40px;
-  height: 40px;
-}
-
-.button-section {
+.navbar-sections:last-child {
   border-bottom: none;
 }
 
-.button-section button, .dropdown-menu {
-  font-size: 15px;
+.navigation a {
+  color: #222222;
 }
 
-.nav-icon {
-  font-size: 17px;
+.navigation a:hover {
+  color: $primary-color;
 }
 
-.dropdown-icon, .account-dropdown-icon {
-  float: right;
-  font-size: 14px;
-  color: #000000;
+.account-items img {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  margin-right: 13px;
 }
 
-.account-dropdown-icon {
-  margin-top: 12px;
+.account-items p {
+  margin: 0;
+  padding: 0;
 }
 
-.account-dropdown {
-  width: 230px;
-  border-radius: 0;
+body::-webkit-scrollbar {
+  width: 13px;
+}
+
+.sidebar-sticky::-webkit-scrollbar {
+  width: 11px;
+  padding-bottom: 20px;
+}
+
+body::-webkit-scrollbar-track,
+.sidebar-sticky::-webkit-scrollbar-track {
+  background-color: #c8cccc;
+}
+
+body::-webkit-scrollbar-thumb,
+.sidebar-sticky::-webkit-scrollbar-thumb {
+  background-color: #454545;
 }
