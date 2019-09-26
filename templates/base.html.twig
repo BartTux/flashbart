@@ -15,23 +15,64 @@
 
         <!-- HORIZONTAL NAVIGATION -->
 
-        <nav class="navbar navbar-dark bg-primary fixed-top flex-md-nowrap p-0">
+        <header class="heading">
 
-            <div class="brand-section col-sm-3 col-md-4 col-lg-3 col-xl-2 bg-white text-center">
-                <a class="navbar-brand text-primary" href="#">
-                    <span class="fa fa-american-sign-language-interpreting"></span>
-                    <span class="font-weight-light">flash</span><span class="font-weight-bold">bart</span>
-                </a>
+            <div class="navbar d-flex bg-primary fixed-top p-0">
+                <div class="col-sm-3 col-md-4 col-lg-3 col-xl-2 bg-white text-center brand-section">
+                    <a class="navbar-brand text-primary" href="#">
+                        <span class="fa fa-american-sign-language-interpreting"></span>
+                        <span class="font-weight-light">flash</span><span class="font-weight-bold">bart</span>
+                    </a>
+                </div>
+
+                <div class="search-section">
+                    <input class="form-control form-control-white float-left" type="search" placeholder="Search for..." aria-label="Search">
+                    <button class="btn btn-light" type="submit">
+                        <span class="nav-icon fa fa-search text-muted" aria-hidden="true"></span>
+                    </button>
+                </div>
             </div>
 
-            <div class="search-section">
-                <input class="form-control form-control-white float-left" type="search" placeholder="Search for..." aria-label="Search">
-                <button class="btn btn-light" type="submit">
-                    <span class="nav-icon fa fa-search text-muted" aria-hidden="true"></span>
-                </button>
+            <div class="d-flex align-items-center justify-content-between col-sm-12 col-md-8 col-lg-9 col-xl-10 fixed-top ml-md-auto heading-nav">
+                <nav>
+                    <h2 class="h3">All cards</h2>
+                    <small>
+                        <a href="#">Flashcards</a> -> All cards
+                    </small>
+                </nav>
+
+                <form class="form-items">
+                    <div class="form-group float-left mr-4">
+                        <fieldset>
+                            <legend>Show</legend>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="sentence" checked>
+                                <label class="form-check-label" for="sentence">Example sentence</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="pronunciation" checked>
+                                <label class="form-check-label" for="pronunciation">Pronunciation</label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="form-group float-left mr-5">
+                        <label for="select">Sort by</label>
+                        <select class="form-control" id="select">
+                            <option value="">Date increase</option>
+                            <option value="">Date decrease</option>
+                            <option value="">Word alphabetically</option>
+                            <option value="">Word not alphabetically</option>
+                        </select>
+                    </div>
+
+                    <button class="btn btn-primary mt-4" type="submit">Submit</button>
+                </form>
             </div>
 
-        </nav>
+        </header>
 
         <!-- END HORIZONTAL NAVIGATION -->
 
