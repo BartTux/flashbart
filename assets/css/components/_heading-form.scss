@@ -1,0 +1,76 @@
+.heading-form_show legend,
+.heading-form_sort label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.heading-form_show input[type=checkbox] {
+  opacity: 0;
+}
+
+.heading-form_show label {
+  position: relative;
+  font-size: 14px;
+  margin-left: 4px;
+  color: #000000;
+}
+
+.heading-form_show label::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: -21px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #becbcc;
+}
+
+.heading-form_show label::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: -19px;
+  display: inline-block;
+  width: 12px;
+  height: 7px;
+  border-left: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+  transform: rotate(-45deg);
+}
+
+.heading-form_show input[type=checkbox] + label::after {
+  content: none;
+}
+
+.heading-form_show input[type=checkbox]:checked + label::after {
+  content: "";
+}
+
+.heading-form_show input[type=checkbox]:focus + label::before {
+  outline: rgb(59, 153, 252) auto 5px;
+}
+
+.heading-form_sort select {
+  border-radius: 0;
+  width: 200px;
+  height: 25px;
+  font-size: 14px;
+  color: #000000;
+}
+
+.heading-form button {
+  width: 90px;
+  font-size: 14px;
+  border-radius: 0;
+  margin-top: 38px;
+  margin-left: 10px;
+  background-color: #c8cccc;
+  color: #ffffff;
+}
+
+.heading-form button:hover {
+  cursor: not-allowed;
+  background-color: #c8cccc;
+  color: #ffffff;
+}
