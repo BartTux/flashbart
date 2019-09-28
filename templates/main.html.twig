@@ -5,9 +5,33 @@
 {% block body %}
 
     <main class="col-md-8 col-lg-9 col-xl-10 ml-sm-auto px-4 content">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-            <h1>Homepage</h1>
-        </div>
+        <section class="d-flex justify-content-around flex-wrap align-items-center">
+
+            <!-- START FLASHCARD SECTION -->
+
+            <div class="card">
+                <div class="card-header">
+                    <a href="#">
+                        <span class="fa fa-pencil fa-fw" aria-hidden="true"></span>
+                    </a>
+                    <a href="#">
+                        <span class="fa fa-trash fa-fw" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">Ratification</h3>
+                    <p class="card-subtitle text-muted">/ ra'tifikejszyn /</p>
+
+                    <div class="card-group">
+                        <p class="card-text">it's our priev to got ratification.</p>
+                        <small class="card-prompt text-muted">example sentence(s)</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- END FLASHCARD SECTION -->
+
+        </section>
     </main>
 
 {% endblock %}
