@@ -51,6 +51,12 @@
   outline: rgb(59, 153, 252) auto 5px;
 }
 
+.heading-form_show input[type=checkbox]:hover + label::after,
+.heading-form_show input[type=checkbox]:hover + label::before,
+.heading-form_show label:hover {
+  cursor: pointer;
+}
+
 .heading-form_sort select {
   border-radius: 0;
   width: 200px;
@@ -65,12 +71,6 @@
   border-radius: 0;
   margin-top: 38px;
   margin-left: 10px;
-  background-color: #c8cccc;
-  color: #ffffff;
-}
-
-.heading-form button:hover {
-  cursor: not-allowed;
   background-color: #c8cccc;
   color: #ffffff;
 }

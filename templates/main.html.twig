@@ -9,25 +9,39 @@
 
             <!-- START FLASHCARD SECTION -->
 
-            <div class="card">
-                <div class="card-header">
-                    <a href="#">
-                        <span class="fa fa-pencil fa-fw" aria-hidden="true"></span>
-                    </a>
-                    <a href="#">
-                        <span class="fa fa-trash fa-fw" aria-hidden="true"></span>
-                    </a>
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Ratification</h3>
-                    <p class="card-subtitle text-muted">/ ra'tifikejszyn /</p>
+            {% for flashcard in flashcards %}
+                <div class="card">
+                    <div class="card-header">
+                        <a href="#">
+                            <span class="fa fa-pencil fa-fw" aria-hidden="true"></span>
+                        </a>
+                        <a href="#">
+                            <span class="fa fa-trash fa-fw" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">{{ flashcard.word }}</h3>
+                        <p class="card-subtitle text-muted">
+                            {% if flashcard.pronun is empty %}
+                                <a href="#">complete pronunciation</a>
+                            {% else %}
+                                / {{ flashcard.pronun }} /
+                            {% endif %}
+                        </p>
 
-                    <div class="card-group">
-                        <p class="card-text">it's our priev to got ratification.</p>
-                        <small class="card-prompt text-muted">example sentence(s)</small>
+                        <div class="card-group">
+                            <p class="card-text">
+                                {% if flashcard.example is not empty %}
+                                    {{ flashcard.example }}
+                                {% else %}
+                                    <a href="#">complete example sentence</a>
+                                {% endif %}
+                            </p>
+                            <small class="card-prompt text-muted">example sentence(s)</small>
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% endfor %}
 
             <!-- END FLASHCARD SECTION -->
 
