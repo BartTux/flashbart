@@ -20,25 +20,33 @@
                         </a>
                     </div>
                     <div class="card-body">
-                        <h3 class="card-title">{{ flashcard.word }}</h3>
-                        <p class="card-subtitle text-muted">
-                            {% if flashcard.pronun is empty %}
-                                <a href="#">complete pronunciation</a>
-                            {% else %}
-                                / {{ flashcard.pronun }} /
-                            {% endif %}
-                        </p>
-
-                        <div class="card-group">
-                            <p class="card-text">
-                                {% if flashcard.example is not empty %}
-                                    {{ flashcard.example }}
+                        {% if flashcard.id == id %}
+                            <h3 class="card-title">
+                                <a class="text-dark" href="/">{{ flashcard.translation }}</a>
+                            </h3>
+                        {% else %}
+                            <h3 class="card-title">
+                                <a class="text-dark" href="/show/{{ flashcard.id }}">{{ flashcard.word }}</a>
+                            </h3>
+                            <p class="card-subtitle text-muted">
+                                {% if flashcard.pronun is empty %}
+                                    <a href="#">complete pronunciation</a>
                                 {% else %}
-                                    <a href="#">complete example sentence</a>
+                                    / {{ flashcard.pronun }} /
                                 {% endif %}
                             </p>
-                            <small class="card-prompt text-muted">example sentence(s)</small>
-                        </div>
+
+                            <div class="card-group">
+                                <p class="card-text">
+                                    {% if flashcard.example is not empty %}
+                                        {{ flashcard.example }}
+                                    {% else %}
+                                        <a href="#">complete example sentence</a>
+                                    {% endif %}
+                                </p>
+                                <small class="card-prompt text-muted">example sentence(s)</small>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}

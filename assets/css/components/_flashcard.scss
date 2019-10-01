@@ -1,0 +1,53 @@
+.card {
+  width: 340px;
+  min-height: 200px;
+  margin-bottom: 40px;
+  background-color: #ffffff;
+  border: 1px solid #e1e4e4;
+  border-radius: 0;
+  text-align: center;
+}
+
+.card-header {
+  background-color: #ffffff;
+  border: 0;
+  padding: 5px;
+  text-align: right;
+}
+
+.card-header > a {
+  color: #000000;
+  padding: 0;
+  text-decoration: none;
+}
+
+.card-header > a .fa {
+  font-size: 17px;
+  margin-right: 5px;
+}
+
+.card-title {
+  font-size: 18px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.card-subtitle {
+  font-size: 14px;
+}
+
+.card-group {
+  margin-top: 40px;
+}
+
+.card-group p {
+  width: 350px;
+  margin-bottom: 0;
+  font-size: 13px;
+}
+
+.card-prompt {
+  width: 350px;
+  text-align: left;
+  border-top: 1px solid #e1e4e4;
+}
