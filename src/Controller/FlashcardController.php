@@ -48,7 +48,7 @@ class FlashcardController extends AbstractController
     }
 
     /**
-     * @Route("/")
+     * @Route("/", name="flashcard_index", methods={"GET"})
      * @return Response
      */
     public function showFlashcards(): Response
@@ -60,7 +60,7 @@ class FlashcardController extends AbstractController
     }
 
     /**
-     * @Route("/show/{id}")
+     * @Route("/show/{id}", name="flashcard_translation", methods={"GET"})
      * @param int $id
      * @return Response
      */

@@ -22,11 +22,11 @@
                     <div class="card-body">
                         {% if flashcard.id == id %}
                             <h3 class="card-title">
-                                <a class="text-dark" href="/">{{ flashcard.translation }}</a>
+                                <a class="text-dark" href="{{ path('flashcard_index') }}">{{ flashcard.translation }}</a>
                             </h3>
                         {% else %}
                             <h3 class="card-title">
-                                <a class="text-dark" href="/show/{{ flashcard.id }}">{{ flashcard.word }}</a>
+                                <a class="text-dark" href="{{ path('flashcard_translation', {id: flashcard.id}) }}">{{ flashcard.word }}</a>
                             </h3>
                             <p class="card-subtitle text-muted">
                                 {% if flashcard.pronun is empty %}
