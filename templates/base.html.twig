@@ -35,9 +35,9 @@
 
             <div class="d-flex align-items-center justify-content-between col-sm-12 col-md-8 col-lg-9 col-xl-10 fixed-top ml-md-auto heading-below">
                 <nav class="heading-nav">
-                    <h2 class="h4 font-weight-normal">All Cards</h2>
+                    <h2 class="h4 font-weight-normal">{{ category | capitalize | replace({'-': " "}) }}</h2>
                     <small>
-                        <a href="#">Flashcards</a> <span class="fa fa-chevron-right fa-fw"></span> All cards
+                        <a href="#">Flashcards</a> <span class="fa fa-chevron-right fa-fw"></span> {{ category | capitalize | replace({'-': " "}) }}
                     </small>
                 </nav>
 
@@ -89,7 +89,7 @@
                             <a class="d-flex justify-content-between align-items-center" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true"
                                aria-expanded="false">
                                 <div class="account-items">
-                                    <img class="float-left" src="../img/flaga.png" alt="Profile image">
+                                    <img class="float-left" src="../../img/flaga.png" alt="Profile image">
                                     <p class="text-dark font-weight-bold d-block float-left">Michael Doe</p>
                                     <small class="text-muted d-block">
                                         <span class="fa fa-flag fa-fw text-muted" aria-hidden="true"></span>
@@ -130,10 +130,13 @@
                                     </a>
                                     <ul class="dropdown-menu border-0 mb-2" aria-labelledby="navbarDropdown">
                                         <li>
-                                            <a class="dropdown-item ml-4 active" href="#">All Cards</a>
+                                            <a class="dropdown-item ml-4 active" href="{{ path('flashcard_index', {slug: 'all-cards'}) }}">All Cards</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item ml-4" href="#">User section 1</a>
+                                            <a class="dropdown-item ml-4" href="{{ path('flashcard_index', {slug: 'other'}) }}">Other</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item ml-4" href="{{ path('flashcard_index', {slug: 'animals'}) }}">Animals</a>
                                         </li>
                                     </ul>
                                 </li>
