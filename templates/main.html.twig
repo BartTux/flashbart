@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Flashbart - All Cards{% endblock %}
+{#{% block title %}Flashbart - {{ category }}{% endblock %}#}
 
 {% block body %}
 
@@ -10,47 +10,49 @@
             <!-- START FLASHCARD SECTION -->
 
             {% for flashcard in flashcards %}
-                {% if flashcard.category == category or category == "all-cards" %}
-                    <div class="card">
-                        <div class="card-header">
-                            <a href="#">
-                                <span class="fa fa-pencil fa-fw" aria-hidden="true"></span>
-                            </a>
-                            <a href="#">
-                                <span class="fa fa-trash fa-fw" aria-hidden="true"></span>
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            {% if flashcard.id == id %}
-                                <h3 class="card-title">
-                                    <a class="text-dark" href="{{ path('flashcard_index', {slug: category}) }}">{{ flashcard.translation }}</a>
-                                </h3>
-                            {% else %}
-                                <h3 class="card-title">
-                                    <a class="text-dark" href="{{ path('flashcard_show', {slug: category, id: flashcard.id}) }}">{{ flashcard.word }}</a>
-                                </h3>
-                                <p class="card-subtitle text-muted">
-                                    {% if flashcard.pronun is empty %}
-                                        <a href="#">complete pronunciation</a>
+                <div class="card">
+                    <div class="card-header">
+                        <a href="#">
+                            <span class="fa fa-pencil fa-fw" aria-hidden="true"></span>
+                        </a>
+                        <a href="#">
+                            <span class="fa fa-trash fa-fw" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        {% if flashcard.id == id %}
+                            <h3 class="card-title">
+                                <a class="text-dark" href="{{ path('flashcard_index', {slug: slug}) }}">
+                                    {{ flashcard.getTranslations().getWord() }}
+                                </a>
+                            </h3>
+                        {% else %}
+                            <h3 class="card-title">
+                                <a class="text-dark" href="{{ path('flashcard_show', {slug: slug, id: flashcard.id}) }}">
+                                    {{ flashcard.getWords().getWord() }}
+                                </a>
+                            </h3>
+                            <p class="card-subtitle text-muted">
+                                {% if flashcard.pronunciation is empty %}
+                                    <a href="#">complete pronunciation</a>
+                                {% else %}
+                                    / {{ flashcard.pronunciation }} /
+                                {% endif %}
+                            </p>
+
+                            <div class="card-group">
+                                <p class="card-text">
+                                    {% if flashcard.exampleSentence is not empty %}
+                                        {{ flashcard.exampleSentence }}
                                     {% else %}
-                                        / {{ flashcard.pronun }} /
+                                        <a href="#">complete example sentence</a>
                                     {% endif %}
                                 </p>
-
-                                <div class="card-group">
-                                    <p class="card-text">
-                                        {% if flashcard.example is not empty %}
-                                            {{ flashcard.example }}
-                                        {% else %}
-                                            <a href="#">complete example sentence</a>
-                                        {% endif %}
-                                    </p>
-                                    <small class="card-prompt text-muted">example sentence(s)</small>
-                                </div>
-                            {% endif %}
-                        </div>
+                                <small class="card-prompt text-muted">example sentence(s)</small>
+                            </div>
+                        {% endif %}
                     </div>
-                {% endif %}
+                </div>
             {% endfor %}
 
             <!-- END FLASHCARD SECTION -->

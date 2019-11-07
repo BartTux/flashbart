@@ -2,68 +2,22 @@
 
 namespace App\Controller;
 
+use App\Entity\Categories;
+use App\Entity\Flashcards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class FlashcardController extends AbstractController
 {
-    private $flashcard;
-
-    public function __construct()
-    {
-        $this->flashcard = [
-            [
-                'id' => 1,
-                'word' => 'ratification',
-                'translation' => 'ratyfikacja',
-                'pronun' => 'ra\'tifikejszyn',
-                'example' => 'It\'s our priev to got ratification.',
-                'category' => 'other'
-            ], [
-                'id' => 2,
-                'word' => 'dog',
-                'translation' => 'pies',
-                'pronun' => '',
-                'example' => 'My dog is brown and very nice.',
-                'category' => 'animals'
-            ], [
-                'id' => 3,
-                'word' => 'specific',
-                'translation' => 'konkretny',
-                'pronun' => 'spe\'syfik',
-                'example' => 'I mean this specific case.',
-                'category' => 'other'
-            ], [
-                'id' => 4,
-                'word' => 'particular',
-                'translation' => 'szczególny',
-                'pronun' => 'pe\'tikjula',
-                'example' => '',
-                'category' => 'other'
-            ], [
-                'id' => 5,
-                'word' => 'variable',
-                'translation' => 'zmienna',
-                'pronun' => '',
-                'example' => '',
-                'category' => 'other'
-            ]
-        ];
-    }
-
     /**
      * @Route("/{slug}", name="flashcard_index", methods={"GET"})
      * @param string $slug
      * @return Response
      */
-    public function showFlashcards(string $slug): Response
+    public function showFlashcards(string $slug = 'all-cards')
     {
-        return $this->render('main.html.twig', [
-            'flashcards' => $this->flashcard,
-            'category' => $slug,
-            'id' => null
-        ]);
+        return $this->render('main.html.twig', $this->getFlashcards($slug));
     }
 
     /**
@@ -72,12 +26,34 @@ class FlashcardController extends AbstractController
      * @param int $id
      * @return Response
      */
-    public function showFlashcardTranslation(string $slug, int $id): Response
+    public function showFlashcardTranslation(string $slug, int $id = 0)
     {
-        return $this->render('main.html.twig', [
-            'flashcards' => $this->flashcard,
-            'category' => $slug,
+        return $this->render('main.html.twig', $this->getFlashcards($slug, $id));
+    }
+
+    /**
+     * @param string $slug
+     * @param $id
+     * @return array
+     */
+    private function getFlashcards(string $slug, $id = null): array
+    {
+        if ($slug == 'all-cards') {
+            $flashcards = $this->getDoctrine()->getRepository(Flashcards::class)
+                ->findAll();
+        } else {
+            $flashcards = $this->getDoctrine()->getRepository(Flashcards::class)
+                ->findAllByCategory($slug);
+        }
+
+        $categories = $this->getDoctrine()->getRepository(Categories::class)
+            ->findAll();
+
+        return [
+            'flashcards' => $flashcards,
+            'categories' => $categories,
+            'slug' => $slug,
             'id' => $id
-        ]);
+        ];
     }
 }

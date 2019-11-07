@@ -35,9 +35,10 @@
 
             <div class="d-flex align-items-center justify-content-between col-sm-12 col-md-8 col-lg-9 col-xl-10 fixed-top ml-md-auto heading-below">
                 <nav class="heading-nav">
-                    <h2 class="h4 font-weight-normal">{{ category | capitalize | replace({'-': " "}) }}</h2>
+                    <h2 class="h4 font-weight-normal">{{ slug|capitalize|replace({'-': ' '}) }}</h2>
                     <small>
-                        <a href="#">Flashcards</a> <span class="fa fa-chevron-right fa-fw"></span> {{ category | capitalize | replace({'-': " "}) }}
+                        <a href="#">Flashcards</a> <span class="fa fa-chevron-right fa-fw"></span>
+                        {{ slug|capitalize|replace({'-': ' '}) }}
                     </small>
                 </nav>
 
@@ -130,14 +131,18 @@
                                     </a>
                                     <ul class="dropdown-menu border-0 mb-2" aria-labelledby="navbarDropdown">
                                         <li>
-                                            <a class="dropdown-item ml-4 active" href="{{ path('flashcard_index', {slug: 'all-cards'}) }}">All Cards</a>
+                                            <a class="dropdown-item ml-4 {{ slug == 'all-cards' ? 'active' }}"
+                                               href="{{ path('flashcard_index', {slug: 'all-cards'}) }}">All Cards
+                                            </a>
                                         </li>
-                                        <li>
-                                            <a class="dropdown-item ml-4" href="{{ path('flashcard_index', {slug: 'other'}) }}">Other</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item ml-4" href="{{ path('flashcard_index', {slug: 'animals'}) }}">Animals</a>
-                                        </li>
+                                        {% for category in categories %}
+                                            <li>
+                                                <a class="dropdown-item ml-4 {{ slug == category.categoryUri ? 'active' }}"
+                                                   href="{{ path('flashcard_index', {slug: category.categoryUri}) }}">
+                                                    {{ category.name }}
+                                                </a>
+                                            </li>
+                                        {% endfor %}
                                     </ul>
                                 </li>
                                 <li class="nav-item mb-1">
