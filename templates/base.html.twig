@@ -130,19 +130,10 @@
                                         <span class="dropdown-icon fa fa-caret-right fa-fw text-dark" aria-hidden="true"></span>
                                     </a>
                                     <ul class="dropdown-menu border-0 mb-2" aria-labelledby="navbarDropdown">
-                                        <li>
-                                            <a class="dropdown-item ml-4 {{ slug == 'all-cards' ? 'active' }}"
-                                               href="{{ path('flashcard_index', {slug: 'all-cards'}) }}">All Cards
-                                            </a>
-                                        </li>
-                                        {% for category in categories %}
-                                            <li>
-                                                <a class="dropdown-item ml-4 {{ slug == category.categoryUri ? 'active' }}"
-                                                   href="{{ path('flashcard_index', {slug: category.categoryUri}) }}">
-                                                    {{ category.name }}
-                                                </a>
-                                            </li>
-                                        {% endfor %}
+                                        {{ render(controller(
+                                            'App\\Controller\\CategoryController::listOfCategories',
+                                            { 'slug': slug }
+                                        )) }}
                                     </ul>
                                 </li>
                                 <li class="nav-item mb-1">

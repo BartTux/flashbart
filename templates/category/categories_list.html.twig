@@ -1,0 +1,13 @@
+<li>
+    <a class="dropdown-item ml-4 {{ slug == 'all-cards' ? 'active' }}"
+       href="{{ path('flashcard_index', {slug: 'all-cards'}) }}">All Cards
+    </a>
+</li>
+{% for category in categories %}
+    <li>
+        <a class="dropdown-item ml-4 {{ slug == category.categoryUri ? 'active' }}"
+           href="{{ path('flashcard_index', {slug: category.categoryUri}) }}">
+            {{ category.name }}
+        </a>
+    </li>
+{% endfor %}

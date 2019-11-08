@@ -9,51 +9,55 @@
 
             <!-- START FLASHCARD SECTION -->
 
-            {% for flashcard in flashcards %}
-                <div class="card">
-                    <div class="card-header">
-                        <a href="#">
-                            <span class="fa fa-pencil fa-fw" aria-hidden="true"></span>
-                        </a>
-                        <a href="#">
-                            <span class="fa fa-trash fa-fw" aria-hidden="true"></span>
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        {% if flashcard.id == id %}
-                            <h3 class="card-title">
-                                <a class="text-dark" href="{{ path('flashcard_index', {slug: slug}) }}">
-                                    {{ flashcard.getTranslations().getWord() }}
-                                </a>
-                            </h3>
-                        {% else %}
-                            <h3 class="card-title">
-                                <a class="text-dark" href="{{ path('flashcard_show', {slug: slug, id: flashcard.id}) }}">
-                                    {{ flashcard.getWords().getWord() }}
-                                </a>
-                            </h3>
-                            <p class="card-subtitle text-muted">
-                                {% if flashcard.pronunciation is empty %}
-                                    <a href="#">complete pronunciation</a>
-                                {% else %}
-                                    / {{ flashcard.pronunciation }} /
-                                {% endif %}
-                            </p>
-
-                            <div class="card-group">
-                                <p class="card-text">
-                                    {% if flashcard.exampleSentence is not empty %}
-                                        {{ flashcard.exampleSentence }}
+            {% if flashcards|length == 0 %}
+                <p>No flashcards for this category. <a href="#">Add some flashcards!</a></p>
+            {% else %}
+                {% for flashcard in flashcards %}
+                    <div class="card">
+                        <div class="card-header">
+                            <a href="#">
+                                <span class="fa fa-pencil fa-fw" aria-hidden="true"></span>
+                            </a>
+                            <a href="#">
+                                <span class="fa fa-trash fa-fw" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            {% if flashcard.id == id %}
+                                <h3 class="card-title">
+                                    <a class="text-dark" href="{{ path('flashcard_index', {slug: slug}) }}">
+                                        {{ flashcard.getTranslations().getWord() }}
+                                    </a>
+                                </h3>
+                            {% else %}
+                                <h3 class="card-title">
+                                    <a class="text-dark" href="{{ path('flashcard_show', {slug: slug, id: flashcard.id}) }}">
+                                        {{ flashcard.getWords().getWord() }}
+                                    </a>
+                                </h3>
+                                <p class="card-subtitle text-muted">
+                                    {% if flashcard.pronunciation is empty %}
+                                        <a href="#">complete pronunciation</a>
                                     {% else %}
-                                        <a href="#">complete example sentence</a>
+                                        / {{ flashcard.pronunciation }} /
                                     {% endif %}
                                 </p>
-                                <small class="card-prompt text-muted">example sentence(s)</small>
-                            </div>
-                        {% endif %}
+
+                                <div class="card-group">
+                                    <p class="card-text">
+                                        {% if flashcard.exampleSentence is not empty %}
+                                            {{ flashcard.exampleSentence }}
+                                        {% else %}
+                                            <a href="#">complete example sentence</a>
+                                        {% endif %}
+                                    </p>
+                                    <small class="card-prompt text-muted">example sentence(s)</small>
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            {% endif %}
 
             <!-- END FLASHCARD SECTION -->
 

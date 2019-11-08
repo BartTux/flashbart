@@ -8,6 +8,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class FlashcardController
+ *
+ * @package App\Controller
+ * @todo move "/{slug}" here and remove this part from actions
+ */
 class FlashcardController extends AbstractController
 {
     /**
@@ -32,6 +38,16 @@ class FlashcardController extends AbstractController
     }
 
     /**
+     * @Route("/{slug}/delete/{id}")
+     * @param string $slug
+     * @param int $id
+     */
+    public function deleteFlashcard(string $slug, int $id)
+    {
+        //TODO: write a service deleted specific flashcard given by $id
+    }
+
+    /**
      * @param string $slug
      * @param $id
      * @return array
@@ -46,12 +62,8 @@ class FlashcardController extends AbstractController
                 ->findAllByCategory($slug);
         }
 
-        $categories = $this->getDoctrine()->getRepository(Categories::class)
-            ->findAll();
-
         return [
             'flashcards' => $flashcards,
-            'categories' => $categories,
             'slug' => $slug,
             'id' => $id
         ];
