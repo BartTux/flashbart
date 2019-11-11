@@ -1,3 +1,7 @@
-controllers:
-    resource: ../../src/Controller/
+Trash:
+    resource: \App\Controller\TrashController
+    type: annotation
+
+Flashcard:
+    resource: \App\Controller\FlashcardController
     type: annotation

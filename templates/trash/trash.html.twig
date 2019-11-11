@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{#{% block title %}Flashbart - {{ category }}{% endblock %}#}
+
+{% block body %}
+
+    <main class="col-md-8 col-lg-9 col-xl-10 ml-sm-auto px-4 content">
+        <section class="d-flex justify-content-around flex-wrap align-items-center">
+
+            <!-- START FLASHCARD SECTION -->
+
+            {% if deletedFlashcards is not empty %}
+                {% for deletedFlashcard in deletedFlashcards %}
+                    <div class="card">
+                        <div class="card-header">
+                            <a href="#">
+                                <span class="fa fa-undo fa-fw" aria-hidden="true"></span>
+                            </a>
+                            <a href="#">
+                                <span class="fa fa-times fa-fw text-danger" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">
+                                {{ deletedFlashcard.getWords.getWord }}
+                            </h3>
+                            {% if deletedFlashcard.pronunciation is not empty %}
+                                <p class="card-subtitle text-muted">
+                                    / {{ deletedFlashcard.pronunciation }} /
+                                </p>
+                            {% endif %}
+
+                            {% if deletedFlashcard.exampleSentence is not empty %}
+                                <div class="card-group">
+                                    <p class="card-text">
+                                        {{ deletedFlashcard.exampleSentence }}
+                                    </p>
+                                    <small class="card-prompt text-muted">example sentence(s)</small>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No deleted flashcards inside the trash. <a href="{{ path('flashcard_index', {slug: 'all-cards'}) }}">Go to your flashcards!</a></p>
+            {% endif %}
+
+            <!-- END FLASHCARD SECTION -->
+
+        </section>
+    </main>
+
+{% endblock %}
+

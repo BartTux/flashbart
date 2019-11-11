@@ -61,6 +61,11 @@ class Flashcards
      */
     private $categories;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Trash", mappedBy="flashcard", cascade={"persist", "remove"})
+     */
+    private $trash;
+
     public function __construct()
     {
         $this->userFlashcards = new ArrayCollection();
@@ -181,6 +186,23 @@ class Flashcards
     public function setCategories(?Categories $categories): self
     {
         $this->categories = $categories;
+
+        return $this;
+    }
+
+    public function getTrash(): ?Trash
+    {
+        return $this->trash;
+    }
+
+    public function setTrash(Trash $trash): self
+    {
+        $this->trash = $trash;
+
+        // set the owning side of the relation if necessary
+        if ($trash->getFlashcard() !== $this) {
+            $trash->setFlashcard($this);
+        }
 
         return $this;
     }

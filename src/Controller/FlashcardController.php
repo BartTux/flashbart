@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Categories;
 use App\Entity\Flashcards;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -12,12 +13,12 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class FlashcardController
  *
  * @package App\Controller
- * @todo move "/{slug}" here and remove this part from actions
+ * @Route("/{slug}")
  */
 class FlashcardController extends AbstractController
 {
     /**
-     * @Route("/{slug}", name="flashcard_index", methods={"GET"})
+     * @Route(name="flashcard_index", methods={"GET"})
      * @param string $slug
      * @return Response
      */
@@ -27,7 +28,7 @@ class FlashcardController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}/show/{id}", name="flashcard_show", methods={"GET"})
+     * @Route("/show/{id}", name="flashcard_show", methods={"GET"})
      * @param string $slug
      * @param int $id
      * @return Response
@@ -38,13 +39,17 @@ class FlashcardController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}/delete/{id}")
+     * @Route("/delete/{id}", name="flashcard_delete", methods={"GET"})
      * @param string $slug
      * @param int $id
+     * @return RedirectResponse
      */
     public function deleteFlashcard(string $slug, int $id)
     {
-        //TODO: write a service deleted specific flashcard given by $id
+        $del = $this->getDoctrine()->getRepository(Flashcards::class)
+            ->addOneToTrash($id);
+
+        return $this->redirect('http://localhost:8000/' . $slug);
     }
 
     /**
@@ -56,7 +61,7 @@ class FlashcardController extends AbstractController
     {
         if ($slug == 'all-cards') {
             $flashcards = $this->getDoctrine()->getRepository(Flashcards::class)
-                ->findAll();
+                ->findAllByDefault();
         } else {
             $flashcards = $this->getDoctrine()->getRepository(Flashcards::class)
                 ->findAllByCategory($slug);

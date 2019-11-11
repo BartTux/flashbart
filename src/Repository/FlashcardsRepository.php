@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Flashcards;
+use App\Entity\Trash;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use function Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Flashcards|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,32 +21,41 @@ class FlashcardsRepository extends ServiceEntityRepository
         parent::__construct($registry, Flashcards::class);
     }
 
-    // /**
-    //  * @return Flashcards[] Returns an array of Flashcards objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findAllByDefault()
     {
+        //TODO: find out why it works properly
         return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('f.id', 'ASC')
-            ->setMaxResults(10)
+            ->leftJoin('f.trash t WITH t.flashcard = f.id', false)
+            ->andWhere('t IS NULL')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
-
 
     public function findAllByCategory($category)
     {
         return $this->createQueryBuilder('f')
             ->join('f.categories', 'c')
+            ->leftJoin('f.trash t WITH t.flashcard = f.id', false)
             ->andWhere('c.category_uri = :category')
+            ->andWhere('t IS NULL')
             ->setParameter('category', $category)
             ->getQuery()
             ->getResult();
     }
 
+    public function addOneToTrash($id)
+    {
+        $flashcard = $this->createQueryBuilder('f')
+            ->andWhere('f.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        $trash = new Trash();
+        $trash->setFlashcard($flashcard);
+
+        $entityManager = $this->_em;
+        $entityManager->persist($trash);
+        $entityManager->flush();
+    }
 }
