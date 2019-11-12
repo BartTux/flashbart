@@ -1,11 +1,11 @@
 <li>
-    <a class="dropdown-item ml-4 {{ slug == 'all-cards' ? 'active' }}"
+    <a class="dropdown-item ml-4 {{ slug == 'all-cards' ? 'font-weight-bold' }}"
        href="{{ path('flashcard_index', {slug: 'all-cards'}) }}">All Cards
     </a>
 </li>
 {% for category in categories %}
     <li>
-        <a class="dropdown-item ml-4 {{ slug == category.categoryUri ? 'active' }}"
+        <a class="dropdown-item ml-4 {{ slug == category.categoryUri ? 'font-weight-bold' }}"
            href="{{ path('flashcard_index', {slug: category.categoryUri}) }}">
             {{ category.name }}
         </a>

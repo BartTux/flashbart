@@ -11,12 +11,12 @@
 
             {% if deletedFlashcards is not empty %}
                 {% for deletedFlashcard in deletedFlashcards %}
-                    <div class="card">
+                    <div class="card grayscale">
                         <div class="card-header">
-                            <a href="#">
+                            <a href="{{ path('trash_restore_flashcard', {id: deletedFlashcard.id}) }}">
                                 <span class="fa fa-undo fa-fw" aria-hidden="true"></span>
                             </a>
-                            <a href="#">
+                            <a href="{{ path('trash_remove_flashcard', {id: deletedFlashcard.id}) }}">
                                 <span class="fa fa-times fa-fw text-danger" aria-hidden="true"></span>
                             </a>
                         </div>

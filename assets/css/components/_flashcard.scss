@@ -51,3 +51,11 @@
   text-align: left;
   border-top: 1px solid #e1e4e4;
 }
+
+.grayscale {
+  opacity: 0.8;
+}
+
+.grayscale:hover {
+  opacity: 1;
+}
