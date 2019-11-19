@@ -3,9 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Flashcards;
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use App\Form\FlashcardType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -68,14 +67,7 @@ class FlashcardController extends AbstractController
                 ->findAllByCategory($slug);
         }
 
-        $form = $this->createFormBuilder($flashcards)
-            ->add('example_sentence', CheckboxType::class, [
-                'label' => 'Example sentence'
-            ])
-            ->add('pronunciation', CheckboxType::class, [
-                'label' => 'Pronunciation'
-            ])
-            ->getForm();
+        $form = $this->createForm(FlashcardType::class, $flashcards);
 
         return [
             'flashcards' => $flashcards,
