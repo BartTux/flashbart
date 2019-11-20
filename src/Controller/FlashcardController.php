@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class FlashcardController extends AbstractController
 {
     /**
-     * @Route(name="flashcard_index", methods={"GET"})
+     * @Route(name="flashcard_index", methods={"GET", "POST"})
      * @param string $slug
      * @return Response
      */
@@ -28,7 +28,7 @@ class FlashcardController extends AbstractController
     }
 
     /**
-     * @Route("/show/{id}", name="flashcard_show", methods={"GET"})
+     * @Route("/show/{id}", name="flashcard_show", methods={"GET", "POST"})
      * @param string $slug
      * @param int $id
      * @return Response
@@ -46,7 +46,7 @@ class FlashcardController extends AbstractController
      */
     public function deleteFlashcard(string $slug, int $id)
     {
-        $del = $this->getDoctrine()->getRepository(Flashcards::class)
+        $this->getDoctrine()->getRepository(Flashcards::class)
             ->addOneToTrash($id);
 
         return $this->redirect('http://localhost:8000/' . $slug);
@@ -67,7 +67,7 @@ class FlashcardController extends AbstractController
                 ->findAllByCategory($slug);
         }
 
-        $form = $this->createForm(FlashcardType::class, $flashcards);
+        $form = $this->createForm(FlashcardType::class);
 
         return [
             'flashcards' => $flashcards,
