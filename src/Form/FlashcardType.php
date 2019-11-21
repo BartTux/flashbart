@@ -15,7 +15,7 @@ class FlashcardType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('example_sentence', CheckboxType::class, [
+            ->add('exampleSentence', CheckboxType::class, [
                 'label' => 'Example sentence'
             ])
             ->add('pronunciation', CheckboxType::class, [
