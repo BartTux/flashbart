@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Flashcards;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Form\FlashcardType;
+use App\Form\Type\FlashcardType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

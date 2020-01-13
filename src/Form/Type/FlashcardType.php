@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Type;
 
 use App\Entity\Flashcards;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,10 +15,18 @@ class FlashcardType extends AbstractType
     {
         $builder
             ->add('exampleSentence', CheckboxType::class, [
-                'label' => 'Example sentence'
+                'label' => 'Example sentence',
+                'required' => false,
+                'attr' => [
+                    'checked' => true
+                ]
             ])
             ->add('pronunciation', CheckboxType::class, [
-                'label' => 'Pronunciation'
+                'label' => 'Pronunciation',
+                'required' => false,
+                'attr' => [
+                    'checked' => true
+                ]
             ])
             ->add('sortBy', ChoiceType::class, [
                 'label' => 'Sort by',
@@ -29,9 +36,6 @@ class FlashcardType extends AbstractType
                     'Word alphabetically' => 3,
                     'Word not alphabetically' => 4
                 ]
-            ])
-            ->add('save', SubmitType::class, [
-                'label' => 'Submit'
             ]);
     }
 
