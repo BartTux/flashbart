@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Flashcards;
 use App\Entity\Trash;
+use App\Entity\Words;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use function Doctrine\ORM\QueryBuilder;
@@ -21,24 +22,47 @@ class FlashcardsRepository extends ServiceEntityRepository
         parent::__construct($registry, Flashcards::class);
     }
 
-    public function findAllByDefault()
-    {
+    public function findAllByDefault(
+        $exSentence,
+        $pronunciation,
+        $sortBy,
+        $sortMethod
+    ){
         //TODO: find out why it works properly
         return $this->createQueryBuilder('f')
+            ->select('f.id, w.word AS word, tr.word AS translation'
+                . $exSentence . $pronunciation)
+            ->from(Words::class, 'w')
+            ->join(Words::class, 'tr')
             ->leftJoin('f.trash t WITH t.flashcard = f.id', false)
+            ->andWhere('f.words = w')
+            ->andWhere('f.translations = tr')
             ->andWhere('t IS NULL')
+            ->orderBy($sortBy, $sortMethod)
             ->getQuery()
             ->getResult();
     }
 
-    public function findAllByCategory($category)
-    {
+    public function findAllByCategory(
+        $category,
+        $exSentence,
+        $pronunciation,
+        $sortBy,
+        $sortMethod
+    ){
         return $this->createQueryBuilder('f')
+            ->select('f.id, w.word AS word, tr.word AS translation'
+                . $exSentence . $pronunciation)
+            ->from(Words::class, 'w')
+            ->join(Words::class, 'tr')
             ->join('f.categories', 'c')
             ->leftJoin('f.trash t WITH t.flashcard = f.id', false)
+            ->andWhere('f.words = w')
+            ->andWhere('f.translations = tr')
             ->andWhere('c.category_uri = :category')
             ->andWhere('t IS NULL')
             ->setParameter('category', $category)
+            ->orderBy($sortBy, $sortMethod)
             ->getQuery()
             ->getResult();
     }

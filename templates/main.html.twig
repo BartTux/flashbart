@@ -10,14 +10,20 @@
                 <legend>Show</legend>
 
                 <div class="form-check form-check-inline mr-4">
-                    {{ form_widget(form.exampleSentence, {'attr': {'class': 'form-check-input'}}) }}
+                    {{ form_widget(form.exampleSentence, (flashcards[0].example_sentence is defined
+                        ? {'attr': {'class': 'form-check-input', 'checked': 'true'}}
+                        : {'attr': {'class': 'form-check-input'}})
+                    ) }}
                     {{ form_label(form.exampleSentence, null, {
                         'label_attr': {'class': 'form-check-label'}
                     }) }}
                 </div>
 
                 <div class="form-check form-check-inline">
-                    {{ form_widget(form.pronunciation, {'attr': {'class': 'form-check-input'}}) }}
+                    {{ form_widget(form.pronunciation, (flashcards[0].pronunciation is defined
+                        ? {'attr': {'class': 'form-check-input', 'checked': 'true'}}
+                        : {'attr': {'class': 'form-check-input'}})
+                    ) }}
                     {{ form_label(form.pronunciation, null, {
                         'label_attr': {'class': 'form-check-label'}
                     }) }}
@@ -30,7 +36,7 @@
             {{ form_widget(form.sortBy, {'attr': {'class': 'form-control px-2 py-0'}}) }}
         </div>
 
-        <button class="btn" type="submit">Submit</button>
+        {{ form_widget(form.submit, {'attr': {'class': 'btn'}}) }}
     {{ form_end(form) }}
 
 {% endblock %}
@@ -58,33 +64,29 @@
                             {% if flashcard.id == id %}
                                 <h3 class="card-title">
                                     <a class="text-dark" href="{{ path('flashcard_index', {slug: slug}) }}">
-                                        {{ flashcard.getTranslations.getWord }}
+                                        {{ flashcard.translation }}
                                     </a>
                                 </h3>
                             {% else %}
                                 <h3 class="card-title">
                                     <a class="text-dark" href="{{ path('flashcard_show', {slug: slug, id: flashcard.id}) }}">
-                                        {{ flashcard.getWords.getWord }}
+                                        {{ flashcard.word }}
                                     </a>
                                 </h3>
-                                <p class="card-subtitle text-muted">
-                                    {% if flashcard.pronunciation is empty %}
-                                        <a href="#">complete pronunciation</a>
-                                    {% else %}
+                                {% if flashcard.pronunciation is defined and flashcard.pronunciation is not empty %}
+                                    <p class="card-subtitle text-muted">
                                         / {{ flashcard.pronunciation }} /
-                                    {% endif %}
-                                </p>
-
-                                <div class="card-group">
-                                    <p class="card-text">
-                                        {% if flashcard.exampleSentence is not empty %}
-                                            {{ flashcard.exampleSentence }}
-                                        {% else %}
-                                            <a href="#">complete example sentence</a>
-                                        {% endif %}
                                     </p>
-                                    <small class="card-prompt text-muted">example sentence(s)</small>
-                                </div>
+                                {% endif %}
+
+                                {% if flashcard.example_sentence is defined and flashcard.example_sentence is not empty %}
+                                    <div class="card-group">
+                                        <p class="card-text">
+                                            {{ flashcard.example_sentence }}
+                                        </p>
+                                        <small class="card-prompt text-muted">example sentence(s)</small>
+                                    </div>
+                                {% endif %}
                             {% endif %}
                         </div>
                     </div>
