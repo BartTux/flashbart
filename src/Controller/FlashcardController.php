@@ -63,10 +63,10 @@ class FlashcardController extends AbstractController
      */
     private function getFlashcards(Request $request, string $slug, $id = null): array
     {
-        $exSentence = ', f.example_sentence';
-        $pronunciation = ', f.pronunciation';
-        $sortBy = 'f.creation_date';
-        $sortMethod = 'DESC';
+        //TODO: Make it as session because of switching between URI
+        $exSentence = 1;
+        $pronunciation = 1;
+        $sortOption = 1;
 
         $form = $this->createForm(FlashcardType::class);
 
@@ -75,43 +75,25 @@ class FlashcardController extends AbstractController
 
             $data = $form->getData();
 
-            if (!$data['exampleSentence']) {
-                $exSentence = '';
-            }
-
-            if (!$data['pronunciation']) {
-                $pronunciation = '';
-            }
-
-            switch ($data['sortBy']) {
-                case 1:
-                    $sortBy = 'f.creation_date';
-                    $sortMethod = 'ASC';
-                    break;
-                case 2:
-                    $sortBy = 'f.creation_date';
-                    break;
-                case 3:
-                    $sortBy = 'w.word';
-                    $sortMethod = 'ASC';
-                    break;
-                case 4:
-                    $sortBy = 'w.word';
-                    break;
-            }
+            $exSentence = $data['exampleSentence'];
+            $pronunciation = $data['pronunciation'];
+            $sortOption = $data['sortBy'];
         }
 
         if ($slug == 'all-cards') {
             $flashcards = $this->getDoctrine()->getRepository(Flashcards::class)
-                ->findAllByDefault($exSentence, $pronunciation, $sortBy, $sortMethod);
+                ->findAllByDefault($exSentence, $pronunciation, $sortOption);
         } else {
             $flashcards = $this->getDoctrine()->getRepository(Flashcards::class)
-                ->findAllByCategory($slug, $exSentence, $pronunciation, $sortBy, $sortMethod);
+                ->findAllByCategory($slug, $exSentence, $pronunciation, $sortOption);
         }
 
         return [
             'flashcards' => $flashcards,
             'form' => $form->createView(),
+            'pronunciation' => $pronunciation,
+            'exampleSentence' => $exSentence,
+            'sortBy' => (string)$sortOption,
             'slug' => $slug,
             'id' => $id
         ];

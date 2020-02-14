@@ -25,20 +25,18 @@ class FlashcardsRepository extends ServiceEntityRepository
     public function findAllByDefault(
         $exSentence,
         $pronunciation,
-        $sortBy,
-        $sortMethod
+        $sortOption
     ){
         //TODO: find out why it works properly
         return $this->createQueryBuilder('f')
-            ->select('f.id, w.word AS word, tr.word AS translation'
-                . $exSentence . $pronunciation)
+            ->select($this->selectColumns($exSentence, $pronunciation))
             ->from(Words::class, 'w')
             ->join(Words::class, 'tr')
             ->leftJoin('f.trash t WITH t.flashcard = f.id', false)
             ->andWhere('f.words = w')
             ->andWhere('f.translations = tr')
             ->andWhere('t IS NULL')
-            ->orderBy($sortBy, $sortMethod)
+            ->orderBy($this->sortBy($sortOption), $this->sortMethod($sortOption))
             ->getQuery()
             ->getResult();
     }
@@ -47,12 +45,10 @@ class FlashcardsRepository extends ServiceEntityRepository
         $category,
         $exSentence,
         $pronunciation,
-        $sortBy,
-        $sortMethod
+        $sortOption
     ){
         return $this->createQueryBuilder('f')
-            ->select('f.id, w.word AS word, tr.word AS translation'
-                . $exSentence . $pronunciation)
+            ->select($this->selectColumns($exSentence, $pronunciation))
             ->from(Words::class, 'w')
             ->join(Words::class, 'tr')
             ->join('f.categories', 'c')
@@ -62,7 +58,7 @@ class FlashcardsRepository extends ServiceEntityRepository
             ->andWhere('c.category_uri = :category')
             ->andWhere('t IS NULL')
             ->setParameter('category', $category)
-            ->orderBy($sortBy, $sortMethod)
+            ->orderBy($this->sortBy($sortOption), $this->sortMethod($sortOption))
             ->getQuery()
             ->getResult();
     }
@@ -81,5 +77,53 @@ class FlashcardsRepository extends ServiceEntityRepository
         $entityManager = $this->_em;
         $entityManager->persist($trash);
         $entityManager->flush();
+    }
+
+    private function selectColumns($exSentence, $pronunciation)
+    {
+        $result = 'f.id, w.word AS word, tr.word AS translation';
+
+        if ($exSentence) {
+            $result .= ', f.example_sentence';
+        }
+        if ($pronunciation) {
+            $result .= ', f.pronunciation';
+        }
+
+        return $result;
+    }
+
+    private function sortBy($sortOption)
+    {
+        switch ($sortOption) {
+            case 1:
+            case 2:
+            default:
+                $result = 'f.creation_date';
+                break;
+            case 3:
+            case 4:
+                $result = 'w.word';
+                break;
+        }
+
+        return $result;
+    }
+
+    private function sortMethod($sortOption)
+    {
+        switch ($sortOption) {
+            case 1:
+            case 4:
+            default:
+                $result = 'DESC';
+                break;
+            case 2:
+            case 3:
+                $result = 'ASC';
+                break;
+        }
+
+        return $result;
     }
 }

@@ -2,14 +2,11 @@
 
 namespace App\Form\Type;
 
-use App\Entity\Flashcards;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FlashcardType extends AbstractType
 {
@@ -27,8 +24,8 @@ class FlashcardType extends AbstractType
             ->add('sortBy', ChoiceType::class, [
                 'label' => 'Sort by',
                 'choices' => [
-                    'Date increase' => 1,
-                    'Date decrease' => 2,
+                    'Date decrease' => 1,
+                    'Date increase' => 2,
                     'Word alphabetically' => 3,
                     'Word not alphabetically' => 4
                 ]
