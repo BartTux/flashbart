@@ -33,7 +33,7 @@
 
         <div class="form-group float-left mt-3 mr-5 heading-form_sort">
             {{ form_label(form.sortBy) }}
-            {{ form_widget(form.sortBy, { value: sortBy, 'attr': {'class': 'form-control px-2 py-0'} }) }}
+            {{ form_widget(form.sortBy, { value: sortBy, 'attr': {'class': 'probaSortBy form-control px-2 py-0'} }) }}
         </div>
 
         {{ form_widget(form.submit, {'attr': {'class': 'btn'}}) }}
@@ -61,32 +61,24 @@
                             </a>
                         </div>
                         <div class="card-body">
-                            {% if flashcard.id == id %}
-                                <h3 class="card-title">
-                                    <a class="text-dark" href="{{ path('flashcard_index', {slug: slug}) }}">
-                                        {{ flashcard.translation }}
-                                    </a>
-                                </h3>
-                            {% else %}
-                                <h3 class="card-title">
-                                    <a class="text-dark" href="{{ path('flashcard_show', {slug: slug, id: flashcard.id}) }}">
-                                        {{ flashcard.word }}
-                                    </a>
-                                </h3>
-                                {% if flashcard.pronunciation is defined and flashcard.pronunciation is not empty %}
-                                    <p class="card-subtitle text-muted">
-                                        / {{ flashcard.pronunciation }} /
-                                    </p>
-                                {% endif %}
+                            <h3 class="card-title">
+                                <a class="text-dark js-toggle-word" data-toggle="{{ flashcard.translation }}" href="#">
+                                    {{ flashcard.word }}
+                                </a>
+                            </h3>
+                            {% if flashcard.pronunciation is defined and flashcard.pronunciation is not empty %}
+                                <p class="card-subtitle text-muted">
+                                    / {{ flashcard.pronunciation }} /
+                                </p>
+                            {% endif %}
 
-                                {% if flashcard.example_sentence is defined and flashcard.example_sentence is not empty %}
-                                    <div class="card-group">
-                                        <p class="card-text">
-                                            {{ flashcard.example_sentence }}
-                                        </p>
-                                        <small class="card-prompt text-muted">example sentence(s)</small>
-                                    </div>
-                                {% endif %}
+                            {% if flashcard.example_sentence is defined and flashcard.example_sentence is not empty %}
+                                <div class="card-group">
+                                    <p class="card-text">
+                                        {{ flashcard.example_sentence }}
+                                    </p>
+                                    <small class="card-prompt text-muted">example sentence(s)</small>
+                                </div>
                             {% endif %}
                         </div>
                     </div>
@@ -100,5 +92,10 @@
         </section>
     </main>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('reverse_word') }}
 {% endblock %}
 
