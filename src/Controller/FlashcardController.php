@@ -6,7 +6,6 @@ use App\Entity\Flashcards;
 use App\Form\Type\FlashcardType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -19,44 +18,27 @@ use Symfony\Component\Routing\Annotation\Route;
 class FlashcardController extends AbstractController
 {
     /**
-     * @Route(name="flashcard_index", methods={"GET", "POST"})
-     * @param Request $request
+     * @Route(name="flashcard_index")
      * @param string $slug
      * @return Response
      */
-    public function showFlashcards(Request $request, string $slug = 'all-cards')
+    public function showFlashcards(string $slug = 'all-cards')
     {
-        //TODO: Make it as session because of switching between URI
-        $exSentence = 1;
-        $pronunciation = 1;
-        $sortOption = 1;
-
         $form = $this->createForm(FlashcardType::class);
 
-        $form->handleRequest($request);
-        if ($form->get('submit')->isClicked()) {
-
-            $data = $form->getData();
-
-            $exSentence = $data['exampleSentence'];
-            $pronunciation = $data['pronunciation'];
-            $sortOption = $data['sortBy'];
-        }
-
-        if ($slug == 'all-cards') {
+        if ($slug === 'all-cards') {
             $flashcards = $this->getDoctrine()->getRepository(Flashcards::class)
-                ->findAllByDefault($exSentence, $pronunciation, $sortOption);
+                ->findAllByDefault();
         } else {
             $flashcards = $this->getDoctrine()->getRepository(Flashcards::class)
-                ->findAllByCategory($slug, $exSentence, $pronunciation, $sortOption);
+                ->findAllByCategory($slug);
         }
+
+        dump($flashcards);
 
         return $this->render('main.html.twig', [
             'flashcards' => $flashcards,
             'form' => $form->createView(),
-            'pronunciation' => $pronunciation,
-            'exampleSentence' => $exSentence,
-            'sortBy' => (string)$sortOption,
             'slug' => $slug,
         ]);
     }
