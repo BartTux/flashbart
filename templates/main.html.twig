@@ -11,7 +11,7 @@
 
                 <div class="form-check form-check-inline mr-4">
                     {{ form_widget(form.exampleSentence, {
-                        'attr': {'class': 'form-check-input'}
+                        'attr': {'class': 'js-sentence-checked form-check-input'}
                     }) }}
                     {{ form_label(form.exampleSentence, null, {
                         'label_attr': {'class': 'form-check-label'}
@@ -20,7 +20,7 @@
 
                 <div class="form-check form-check-inline">
                     {{ form_widget(form.pronunciation, {
-                        'attr': {'class': 'form-check-input'}
+                        'attr': {'class': 'js-pronun-checked form-check-input'}
                     }) }}
                     {{ form_label(form.pronunciation, null, {
                         'label_attr': {'class': 'form-check-label'}
@@ -33,8 +33,6 @@
             {{ form_label(form.sortBy) }}
             {{ form_widget(form.sortBy, { 'attr': {'class': 'form-control px-2 py-0'} }) }}
         </div>
-
-        {{ form_widget(form.submit, {'attr': {'class': 'btn'}}) }}
     {{ form_end(form) }}
 
 {% endblock %}
@@ -48,7 +46,7 @@
             <!-- START FLASHCARD SECTION -->
 
             {% if flashcards is not empty %}
-                {% for flashcard in flashcards|sort((a, b) => a.creation_date < b.creation_date) %}
+                {% for flashcard in flashcards %} {# Date increase #}
                     <div class="card">
                         <div class="card-header">
                             <a href="#">
@@ -65,13 +63,13 @@
                                 </a>
                             </h3>
                             {% if flashcard.pronunciation is not empty %}
-                                <p class="card-subtitle text-muted">
+                                <p class="js-pronun-state card-subtitle text-muted">
                                     / {{ flashcard.pronunciation }} /
                                 </p>
                             {% endif %}
 
                             {% if flashcard.example_sentence is not empty %}
-                                <div class="card-group">
+                                <div class="js-sentence-state card-group">
                                     <p class="card-text">
                                         {{ flashcard.example_sentence }}
                                     </p>
@@ -94,6 +92,6 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {{ encore_entry_script_tags('reverse_word') }}
+    {{ encore_entry_script_tags('reverse_flashcard_word') }}
 {% endblock %}
 

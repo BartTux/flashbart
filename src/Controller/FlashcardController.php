@@ -34,8 +34,6 @@ class FlashcardController extends AbstractController
                 ->findAllByCategory($slug);
         }
 
-        dump($flashcards);
-
         return $this->render('main.html.twig', [
             'flashcards' => $flashcards,
             'form' => $form->createView(),

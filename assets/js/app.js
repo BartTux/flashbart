@@ -13,4 +13,10 @@ import 'bootstrap';
 // import $ from 'jquery';
 const $ = require('jquery');
 
+$('.js-sentence-checked').click(function () {
+   $('.js-sentence-state').toggle(this.checked);
+});
 
+$('.js-pronun-checked').click(function () {
+   $('.js-pronun-state').toggle(this.checked);
+});

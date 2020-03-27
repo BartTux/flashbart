@@ -24,7 +24,7 @@ Encore
      * and one CSS file (e.g. app.scss) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
-    .addEntry('reverse_word', './assets/js/reverse_word.js')
+    .addEntry('reverse_flashcard_word', './assets/js/reverse_flashcard_word.js')
     //.addEntry('page2', './assets/js/page2.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
