@@ -22,22 +22,13 @@ class FlashcardController extends AbstractController
      * @param string $slug
      * @return Response
      */
-    public function showFlashcards(string $slug = 'all-cards')
+    public function indexAction(string $slug = 'all-cards')
     {
         $form = $this->createForm(FlashcardType::class);
 
-        if ($slug === 'all-cards') {
-            $flashcards = $this->getDoctrine()->getRepository(Flashcards::class)
-                ->findAllByDefault();
-        } else {
-            $flashcards = $this->getDoctrine()->getRepository(Flashcards::class)
-                ->findAllByCategory($slug);
-        }
-
         return $this->render('main.html.twig', [
-            'flashcards' => $flashcards,
             'form' => $form->createView(),
-            'slug' => $slug,
+            'slug' => $slug
         ]);
     }
 

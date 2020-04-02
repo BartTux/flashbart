@@ -22,7 +22,7 @@ class FlashcardsRepository extends ServiceEntityRepository
         parent::__construct($registry, Flashcards::class);
     }
 
-    public function findAllByDefault()
+    public function findAllByDefault(int $id)
     {
         //TODO: find out why it works properly
         return $this->createQueryBuilder('f')
@@ -34,11 +34,12 @@ class FlashcardsRepository extends ServiceEntityRepository
             ->andWhere('f.words = w')
             ->andWhere('f.translations = tr')
             ->andWhere('t IS NULL')
+            ->orderBy($this->getSortOption($id)[0], $this->getSortOption($id)[1])
             ->getQuery()
             ->getResult();
     }
 
-    public function findAllByCategory(string $category)
+    public function findAllByCategory(string $category, int $id)
     {
         return $this->createQueryBuilder('f')
             ->select('f.id, w.word AS word, tr.word AS translation, 
@@ -52,6 +53,7 @@ class FlashcardsRepository extends ServiceEntityRepository
             ->andWhere('c.category_uri = :category')
             ->andWhere('t IS NULL')
             ->setParameter('category', $category)
+            ->orderBy($this->getSortOption($id)[0], $this->getSortOption($id)[1])
             ->getQuery()
             ->getResult();
     }
@@ -70,5 +72,24 @@ class FlashcardsRepository extends ServiceEntityRepository
         $entityManager = $this->_em;
         $entityManager->persist($trash);
         $entityManager->flush();
+    }
+
+    public function getSortOption(int $id)
+    {
+        switch ($id) {
+            case 1:
+            default:
+                return ['f.creation_date', 'DESC'];
+                break;
+            case 2:
+                return ['f.creation_date', 'ASC'];
+                break;
+            case 3:
+                return ['w.word', 'ASC'];
+                break;
+            case 4:
+                return ['w.word', 'DESC'];
+                break;
+        }
     }
 }

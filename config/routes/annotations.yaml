@@ -2,6 +2,14 @@ Trash:
     resource: \App\Controller\TrashController
     type: annotation
 
+Category:
+    resource: \App\Controller\CategoryController
+    type: annotation
+
 Flashcard:
     resource: \App\Controller\FlashcardController
+    type: annotation
+
+FlashcardTwo:
+    resource: \App\Controller\FlashcardTwoController
     type: annotation

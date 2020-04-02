@@ -1,7 +1,8 @@
 // This is a page-specific JS. You have to add Entry
 // (addEntry() function) inside webpack.config.js file
 $(document).ready(function () {
-    $('.js-toggle-word').on('click', function (event) {
+    $('.js-toggle-word').click(function (event) {
+        console.log("works in reverse file");
         event.preventDefault();
 
         let $link = $(event.currentTarget);

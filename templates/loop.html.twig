@@ -1,0 +1,42 @@
+ {% if flashcards is not empty %}
+    {% for flashcard in flashcards %}
+        <div class="card">
+            <div class="card-header">
+                <a href="#">
+                    <span class="fa fa-pencil fa-fw" aria-hidden="true"></span>
+                </a>
+                <a href="{{ path('flashcard_delete', {slug: slug, id: flashcard.id}) }}">
+                    <span class="fa fa-trash fa-fw" aria-hidden="true"></span>
+                </a>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">
+                    <a class="text-dark js-toggle-word" data-toggle="{{ flashcard.translation }}" href="#">
+                        {{ flashcard.word }}
+                    </a>
+                </h3>
+                {% if flashcard.pronunciation is not empty %}
+                    <p class="js-pronun-state card-subtitle text-muted">
+                        / {{ flashcard.pronunciation }} /
+                    </p>
+                {% endif %}
+
+                {% if flashcard.example_sentence is not empty %}
+                    <div class="js-sentence-state card-group">
+                        <p class="card-text">
+                            {{ flashcard.example_sentence }}
+                        </p>
+                        <small class="card-prompt text-muted">example sentence(s)</small>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No flashcards for this category. <a href="#">Add some flashcards!</a></p>
+{% endif %}
+
+{# TODO: Change it because this <script> is displaying behind the main marks on real page #}
+ {% block javascripts %}
+     {{ encore_entry_script_tags('reverse_flashcard_word') }}
+ {% endblock %}
