@@ -19,32 +19,8 @@ class CategoriesRepository extends ServiceEntityRepository
         parent::__construct($registry, Categories::class);
     }
 
-    // /**
-    //  * @return Categories[] Returns an array of Categories objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function addOneCategory($category)
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+//        TODO: make Entity Manager persist and flush name of category ant its uri also.
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Categories
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
