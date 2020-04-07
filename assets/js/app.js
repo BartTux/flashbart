@@ -15,10 +15,11 @@ const $ = require('jquery');
 
 
 $(document).ready(function () {
-   let $link = $('.js-sort-by');
+   const $link = $('.js-sort-by');
+   const $slug = $link.data('slug');
 
    $.ajax({
-      url: '/all-cards/get/' + $link.val(),
+      url: '/' + $slug + '/get/' + $link.val(),
       method: 'POST'
    }).then(function(data) {
       $("#js-card").html(data);
@@ -30,10 +31,11 @@ $(document).ready(function () {
 });
 
 $('.js-sort-by').change(function (e) {
-   let $link = $(e.currentTarget);
+   const $link = $(e.currentTarget);
+   const $slug = $link.data('slug');
 
    $.ajax({
-      url: '/all-cards/get/' + $link.val(),
+      url: '/' + $slug + '/get/' + $link.val(),
       method: 'POST'
    }).then(function(data) {
       $("#js-card").html(data);

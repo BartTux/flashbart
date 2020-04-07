@@ -19,8 +19,10 @@ class CategoriesRepository extends ServiceEntityRepository
         parent::__construct($registry, Categories::class);
     }
 
-    public function addOneCategory($category)
+    public function addOneCategory(Categories $category)
     {
-//        TODO: make Entity Manager persist and flush name of category ant its uri also.
+        $entityManager = $this->_em;
+        $entityManager->persist($category);
+        $entityManager->flush();
     }
 }

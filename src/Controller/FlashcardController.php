@@ -38,11 +38,13 @@ class FlashcardController extends AbstractController
      * @param int $id
      * @return RedirectResponse
      */
-    public function deleteFlashcard(string $slug, int $id)
+    public function moveFlashcardToTrash(string $slug, int $id)
     {
         $this->getDoctrine()->getRepository(Flashcards::class)
             ->addOneToTrash($id);
 
-        return $this->redirect('http://localhost:8000/' . $slug);
+        return $this->redirectToRoute('flashcard_index', [
+            'slug' => $slug
+        ]);
     }
 }

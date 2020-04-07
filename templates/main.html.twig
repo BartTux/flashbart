@@ -31,7 +31,10 @@
 
         <div class="form-group float-left mt-3 mr-5 heading-form_sort">
             {{ form_label(form.sortBy) }}
-            {{ form_widget(form.sortBy, { 'attr': {'class': 'js-sort-by form-control px-2 py-0'} }) }}
+            {{ form_widget(form.sortBy, { 'attr': {
+                'class': 'js-sort-by form-control px-2 py-0',
+                'data-slug': slug
+            }}) }}
         </div>
     {{ form_end(form) }}
 

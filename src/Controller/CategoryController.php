@@ -11,7 +11,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CategoryController extends AbstractController
 {
-    public function displayListOfCategories(string $slug)
+    /**
+     * @param string $slug
+     * @return Response
+     */
+    public function displayListOfCategories(string $slug): Response
     {
         $categories = $this->getDoctrine()->getRepository(Categories::class)
             ->findAll();
@@ -23,21 +27,30 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("/category/add", name="add_category")
+     * @Route("/category/add", name="category_add")
      * @param Request $request
      * @return Response
      */
-    public function addCategory(Request $request)
+    public function addCategory(Request $request): Response
     {
         $form = $this->createForm(CategoryType::class);
-
+        
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $categories = new Categories();
+
             $categories = $form->getData();
-            $categories->setCategoryUri(strtolower($categories->getName()));
-            //TODO: Find and make it better to set URI by category name and pass it to CategoryRepository
-            dump($categories);
+            $categories->setName(preg_replace(
+                '#\s+#', ' ', $categories->getName()));
+
+            $categories->setCategoryUri(strtolower(str_replace(
+                ' ', '-', $categories->getName())));
+
+            dd($categories);
+
+//            $this->getDoctrine()->getRepository(Categories::class)
+//                ->addOneCategory($categories);
+
+            return $this->redirectToRoute('flashcard_index');
         }
 
         return $this->render('category/add_category.html.twig', [
