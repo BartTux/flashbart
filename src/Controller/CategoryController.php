@@ -34,7 +34,7 @@ class CategoryController extends AbstractController
     public function addCategory(Request $request): Response
     {
         $form = $this->createForm(CategoryType::class);
-        
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -45,10 +45,8 @@ class CategoryController extends AbstractController
             $categories->setCategoryUri(strtolower(str_replace(
                 ' ', '-', $categories->getName())));
 
-            dd($categories);
-
-//            $this->getDoctrine()->getRepository(Categories::class)
-//                ->addOneCategory($categories);
+            $this->getDoctrine()->getRepository(Categories::class)
+                ->addOneCategory($categories);
 
             return $this->redirectToRoute('flashcard_index');
         }

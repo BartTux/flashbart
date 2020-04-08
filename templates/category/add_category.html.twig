@@ -11,8 +11,12 @@
                 {{ form_widget(form.name) }}
 
                 {{ form_widget(form.submit) }}
-            {{ form_end(form) }}
 
+                <div class="text-danger">
+                    {{ form_errors(form.name) }}
+                </div>
+
+            {{ form_end(form) }}
         </section>
     </main>
 
